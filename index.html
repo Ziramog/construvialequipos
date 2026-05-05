@@ -114,11 +114,11 @@
             50% { transform: translateX(5px); }
         }
         .machine-card {
-            flex: 0 0 350px;
+            flex: 0 0 calc(85vw - 12px);
             background: #ffffff;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             scroll-snap-align: start;
             position: relative;
         }
@@ -127,35 +127,35 @@
             height: 180px;
             object-fit: contain;
             background: #f5f5f5;
-            border-bottom: 2px solid #f4d03f;
+            border-bottom: 3px solid #f4d03f;
         }
         .machine-content {
-            padding: 10px 12px;
+            padding: 14px 16px;
         }
         .machine-title {
             color: #1a1a2e;
-            font-size: 1em;
-            margin-bottom: 4px;
+            font-size: 1.1em;
+            margin-bottom: 6px;
             border-bottom: 2px solid #f4d03f;
-            padding-bottom: 6px;
+            padding-bottom: 8px;
         }
         .machine-subtitle {
             color: #666;
-            font-size: 0.8em;
-            margin-bottom: 8px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
             font-style: italic;
         }
         .section {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
         }
         .section-title {
             color: #e74c3c;
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
         }
         .section-title::before {
             content: "▪";
@@ -163,21 +163,21 @@
         }
         .description {
             color: #444;
-            font-size: 0.8em;
-            line-height: 1.35;
-            margin-bottom: 6px;
+            font-size: 0.85em;
+            line-height: 1.4;
+            margin-bottom: 8px;
         }
         .spec-list {
             list-style: none;
         }
         .spec-list li {
             color: #555;
-            font-size: 0.75em;
-            padding: 3px 0;
+            font-size: 0.8em;
+            padding: 4px 0;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
-            gap: 6px;
+            gap: 8px;
         }
         .spec-list li:last-child {
             border-bottom: none;
@@ -191,11 +191,11 @@
             display: inline-block;
             background: #f4d03f;
             color: #1a1a2e;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.65em;
+            font-size: 0.7em;
             font-weight: bold;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         /* Tablet */
@@ -204,59 +204,59 @@
                 font-size: 15px;
             }
             body {
-                padding: 15px 0;
+                padding: 20px 0;
             }
             header {
-                margin-bottom: 20px;
-                padding: 15px 20px 0 20px;
+                margin-bottom: 25px;
+                padding: 0 20px;
             }
             header .logo {
-                max-width: 240px;
+                max-width: 260px;
             }
             header p {
-                font-size: 0.85em;
+                font-size: 0.9em;
             }
             .container {
-                gap: 16px;
-                padding: 0 16px 16px 16px;
+                gap: 20px;
+                padding: 0 20px 20px 20px;
             }
             .machine-card {
-                flex: 0 0 260px;
+                flex: 0 0 320px;
             }
             .machine-image {
-                height: 150px;
+                height: 180px;
             }
             .machine-content {
-                padding: 12px 14px;
+                padding: 16px;
             }
             .machine-title {
-                font-size: 1.05em;
-                margin-bottom: 5px;
-                padding-bottom: 6px;
+                font-size: 1.1em;
+                margin-bottom: 6px;
+                padding-bottom: 8px;
             }
             .machine-subtitle {
-                font-size: 0.8em;
-                margin-bottom: 8px;
-            }
-            .section {
+                font-size: 0.85em;
                 margin-bottom: 10px;
             }
+            .section {
+                margin-bottom: 12px;
+            }
             .section-title {
-                font-size: 0.85em;
-                margin-bottom: 4px;
+                font-size: 0.9em;
+                margin-bottom: 5px;
             }
             .description {
-                font-size: 0.75em;
-                line-height: 1.35;
+                font-size: 0.8em;
+                line-height: 1.4;
             }
             .spec-list li {
-                font-size: 0.75em;
-                padding: 3px 0;
+                font-size: 0.8em;
+                padding: 4px 0;
             }
             .badge {
-                padding: 3px 8px;
-                font-size: 0.65em;
-                margin-top: 6px;
+                padding: 4px 10px;
+                font-size: 0.7em;
+                margin-top: 8px;
             }
         }
 
@@ -266,27 +266,27 @@
                 font-size: 16px;
             }
             body {
-                padding: 25px 20px;
+                padding: 30px 20px;
             }
             header {
-                margin-bottom: 30px;
-                padding: 20px 20px 0 20px;
+                margin-bottom: 40px;
+                padding: 0 30px;
             }
             header .logo {
-                max-width: 280px;
-                margin-bottom: 12px;
+                max-width: 300px;
+                margin-bottom: 15px;
             }
             header p {
-                font-size: 0.9em;
+                font-size: 1em;
             }
             .container {
-                gap: 20px;
-                padding: 0 20px 20px 20px;
-                max-width: 1200px;
+                gap: 25px;
+                padding: 0 30px 25px 30px;
+                max-width: 1400px;
                 margin: 0 auto;
             }
             .machine-card {
-                flex: 0 0 300px;
+                flex: 0 0 360px;
                 border-radius: 12px;
                 box-shadow: 0 6px 20px rgba(0,0,0,0.25);
                 transition: transform 0.3s ease;
@@ -295,7 +295,7 @@
                 transform: translateY(-4px);
             }
             .machine-image {
-                height: 170px;
+                height: 190px;
                 border-bottom: 3px solid #f4d03f;
             }
             .machine-content {
