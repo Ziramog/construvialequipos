@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas Técnicas - CONSTRUVIALSA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 16px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000000;
+            min-height: 100vh;
+            padding: 20px 12px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header .logo {
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto 15px;
+        }
+        header p {
+            color: #f4d03f;
+            font-size: 1em;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .machine-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .machine-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #f4d03f;
+        }
+        .machine-content {
+            padding: 16px;
+        }
+        .machine-title {
+            color: #1a1a2e;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #f4d03f;
+            padding-bottom: 8px;
+        }
+        .machine-subtitle {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .section {
+            margin-bottom: 16px;
+        }
+        .section-title {
+            color: #e74c3c;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .section-title::before {
+            content: "▪";
+            color: #f4d03f;
+        }
+        .description {
+            color: #444;
+            font-size: 0.85em;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .spec-list {
+            list-style: none;
+        }
+        .spec-list li {
+            color: #555;
+            font-size: 0.8em;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+        .spec-label {
+            font-weight: 600;
+            color: #333;
+            flex-shrink: 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #f4d03f;
+            color: #1a1a2e;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        /* Tablet */
+        @media (min-width: 600px) {
+            body {
+                padding: 30px 20px;
+            }
+            header {
+                margin-bottom: 40px;
+            }
+            header .logo {
+                max-width: 350px;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .machine-image {
+                height: 220px;
+            }
+            .machine-content {
+                padding: 20px;
+            }
+            .machine-title {
+                font-size: 1.3em;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 900px) {
+            body {
+                padding: 40px 30px;
+            }
+            header {
+                margin-bottom: 50px;
+            }
+            header .logo {
+                max-width: 400px;
+            }
+            header p {
+                font-size: 1.2em;
+            }
+            .container {
+                grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+                gap: 30px;
+            }
+            .machine-card {
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease;
+            }
+            .machine-card:hover {
+                transform: translateY(-5px);
+            }
+            .machine-image {
+                height: 220px;
+                border-bottom: 4px solid #f4d03f;
+            }
+            .machine-content {
+                padding: 25px;
+            }
+            .machine-title {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+            .machine-subtitle {
+                font-size: 0.95em;
+                margin-bottom: 15px;
+            }
+            .section {
+                margin-bottom: 20px;
+            }
+            .section-title {
+                font-size: 1em;
+                margin-bottom: 8px;
+            }
+            .description {
+                font-size: 0.9em;
+                line-height: 1.6;
+                margin-bottom: 10px;
+            }
+            .spec-list li {
+                font-size: 0.85em;
+                padding: 5px 0;
+            }
+            .badge {
+                padding: 4px 12px;
+                font-size: 0.75em;
+                margin-top: 10px;
+            }
+        }
+
+        /* Touch-friendly spec items on mobile */
+        @media (max-width: 599px) {
+            .spec-list li {
+                padding: 8px 0;
+                min-height: 44px;
+                align-items: center;
+            }
+            .machine-card {
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo-white.png" alt="CONSTRUVIALSA" class="logo">
+        <p>Equipo de Alquiler · Maquinaria Pesada</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Doosan DX 225LCA -->
+        <div class="machine-card">
+            <img src="doosan dx 225lca.jpeg" alt="Doosan DX 225LCA" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Doosan DX 225LCA</h2>
+                <p class="machine-subtitle">Excavadora Hidráulica de Orugas</p>
+                <span class="badge">Orugas</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Excavadora hidráulica sobre orugas de alta productividad, diseñada para aplicaciones de excavación, carga y demolición. Equipada con motor Doosan de bajo consumo y alto torque, ofrece excelente rendimiento en terrains difíciles con mínima compactación del suelo.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> ~22,500 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 164 HP (122 kW)</li>
+                        <li><span class="spec-label">Capacidad Cucharón:</span> 0.8 - 1.2 m³</li>
+                        <li><span class="spec-label">Profundidad Excavación:</span> 6,700 mm</li>
+                        <li><span class="spec-label">Alcance Máximo:</span> 9,900 mm</li>
+                        <li><span class="spec-label">Tipo Orugas:</span> triple garra</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Excavación de zanjas, carga de material, demolición ligera, nivelación de terreno, trabajos en canteras y proyectos de construcción vial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cat CW34 -->
+        <div class="machine-card">
+            <img src="cat cw34.jpeg" alt="Cat CW34" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Cat CW34</h2>
+                <p class="machine-subtitle">Compactador de Ruedas de Acero</p>
+                <span class="badge">Compactación</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Compactador de ruedas de acero con lastre configurable, diseñado para compactación de suelos granulares y mezclas asfálticas. Su sistema de amortiguación tipo sandwich reduce vibraciones al operador y optimiza la compactación uniforme.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> 9,500 - 14,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 175 HP (130 kW)</li>
+                        <li><span class="spec-label">Ancho Compactación:</span> 1,700 mm</li>
+                        <li><span class="spec-label">Ruedas:</span> 4 frontales + 5 traseras</li>
+                        <li><span class="spec-label">Frecuencia:</span> 30-34 Hz</li>
+                        <li><span class="spec-label">Lastre:</span> lastre de arena/acero</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Compactación de capas granulares, terminado de superficies asfálticas,bases de carreteras, estacionamiento y zonas industriales.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cat 416E -->
+        <div class="machine-card">
+            <img src="cat416e.jpeg" alt="Cat 416E" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Cat 416E</h2>
+                <p class="machine-subtitle">Retroexcavadora Cargadora</p>
+                <span class="badge">Multiusos</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Retroexcavadora cargadora de gran versatilidad, combina capacidad de carga frontal con brazo excavador trasero. Ideal para obras urbanas, zanjeo, carga de material y maneuvering en espacios reducidos.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> 7,500 - 8,500 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 93 HP (69 kW)</li>
+                        <li><span class="spec-label">Capacidad Cucharón Cargador:</span> 0.96 - 1.1 m³</li>
+                        <li><span class="spec-label">Profundidad Excavación:</span> 4,300 mm</li>
+                        <li><span class="spec-label">Fuerza Excavación:</span> 55 kN</li>
+                        <li><span class="spec-label">Tracción:</span> 4x4</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Zanjeo, carga de material, nivelación ligera, extendido de material, limpieza de solares y mantenimiento vial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solgg 9190F -->
+        <div class="machine-card">
+            <img src="solgg9190f.jpeg" alt="Solgg 9190F" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Solgg 9190F</h2>
+                <p class="machine-subtitle">Excavadora de Orugas</p>
+                <span class="badge">Orugas</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Excavadora sobre orugas de tamaño medio, robusta y confiable para operaciones de excavación demanding. Su diseño equilibrado y sistema hidráulico eficiente garantizan productivity óptima en diversas condiciones de trabajo.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> ~19,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 190 HP (142 kW)</li>
+                        <li><span class="spec-label">Capacidad Cucharón:</span> 0.8 - 1.0 m³</li>
+                        <li><span class="spec-label">Profundidad Excavación:</span> 6,500 mm</li>
+                        <li><span class="spec-label">Alcance Terreno:</span> 9,200 mm</li>
+                        <li><span class="spec-label">Velocidad Desplazamiento:</span> 5.5 km/h</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Excavación general, carga de camiones, demoliciones, movimiento de tierras y preparación de plataformas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- LiuGong 855H -->
+        <div class="machine-card">
+            <img src="luigong 855h.jpeg" alt="LiuGong 855H" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">LiuGong 855H</h2>
+                <p class="machine-subtitle">Cargadora de Ruedas</p>
+                <span class="badge">Carga</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Cargadora frontal de alta capacidad, ideal para carga de material suelto, movimiento de tierras ligeras y alimentación de plantas trituradoras. Su brazo en Z proporciona excellent fuerza de desprendimiento y altura de carga.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> ~17,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 220 HP (164 kW)</li>
+                        <li><span class="spec-label">Capacidad Cucharón:</span> 2.5 - 3.0 m³</li>
+                        <li><span class="spec-label">Carga Volcadora:</span> 5,000 kg</li>
+                        <li><span class="spec-label">Altura Descarga:</span> 2,950 mm</li>
+                        <li><span class="spec-label">Tracción:</span> 4x4</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Carga de material granular, alimentación de trituradoras, acopio de materiales, limpieza de Obras y carga de camiones.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- F 14000 Volcador -->
+        <div class="machine-card">
+            <img src="f 14000 volcador.jpeg" alt="F 14000 Volcador" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">F 14000 Volcador</h2>
+                <p class="machine-subtitle">Camión Volquete / Dúmper</p>
+                <span class="badge">Transporte</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Camión volquete de gran capacidad para transporte de material suelto en obras de construcción y minería. Su caja volcadora permite descarga rápida y controlada del material sin necesidad de equipamiento adicional.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Máximo:</span> 14,000 kg</li>
+                        <li><span class="spec-label">Carga Útil:</span> ~10,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 280 - 350 HP</li>
+                        <li><span class="spec-label">Capacidad Caja:</span> 6 - 8 m³</li>
+                        <li><span class="spec-label">Tipo Caja:</span> volcadora trasera</li>
+                        <li><span class="spec-label">Tracción:</span> 6x4</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Transporte de tierra, grava, arena, escombros y material pétreo dentro de la obra o a vertederos autorizados.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynapac CA250 Pata Cabra -->
+        <div class="machine-card">
+            <img src="dynapac ca 250 pata cabra.jpeg" alt="Dynapac CA250 Pata Cabra" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Dynapac CA250</h2>
+                <p class="machine-subtitle">Compactador de Suelo - Pata de Cabra</p>
+                <span class="badge">Compactación</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Compactador vibratorio de suelo con rodillo tipo "pata de cabra" (sheepfoot roller), diseñado específicamente para compactación de suelos cohesivos y semi-cohesivos. Las patas penetran el material logrando compactación en profundidad.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> 12,000 - 15,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 200 HP (149 kW)</li>
+                        <li><span class="spec-label">Ancho Compactación:</span> 2,130 mm</li>
+                        <li><span class="spec-label">Frecuencia Vibración:</span> 30-35 Hz</li>
+                        <li><span class="spec-label">Amplitud:</span> 1.8 - 2.0 mm</li>
+                        <li><span class="spec-label">Profundidad Compactación:</span> hasta 1 metro</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Compactación de presas, terraplenes,Bases de carreteras,Zanjas y obras de tierra donde se requiera alta densidad en capas profundas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynapac Liso -->
+        <div class="machine-card">
+            <img src="dynapac liso .jpeg" alt="Dynapac Liso" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Dynapac CA150</h2>
+                <p class="machine-subtitle">Compactador de Suelo Liso</p>
+                <span class="badge">Compactación</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Compactador vibratorio de rodillo liso (smooth drum roller) para compactación de suelos granulares, gravas y materiales coherentes. Ideal para capas finales de compactación y acabados superficiales uniformes.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> 10,000 - 13,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 150 HP (112 kW)</li>
+                        <li><span class="spec-label">Ancho Rodillo:</span> 1,700 - 2,130 mm</li>
+                        <li><span class="spec-label">Frecuencia:</span> 30-50 Hz</li>
+                        <li><span class="spec-label">Amplitud:</span> 0.8 - 1.6 mm</li>
+                        <li><span class="spec-label">Fuerza Centrífuga:</span> 200-320 kN</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Compactación de bases granulares, capas asfálticas, terraplenes,y mantenimiento de carreteras.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hyundai 220LC -->
+        <div class="machine-card">
+            <img src="hiunday 220lc .jpeg" alt="Hyundai 220LC" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Hyundai 220LC-9S</h2>
+                <p class="machine-subtitle">Excavadora Hidráulica de Orugas</p>
+                <span class="badge">Orugas</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Excavadora hidráulica sobre orugas de la serie 9 de Hyundai, combina alta productividad con bajo consumo de combustible. Sistema hidráulico智能化 y cabinacomfortable para largas jornadas de trabajo.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> ~22,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 190 HP (142 kW)</li>
+                        <li><span class="spec-label">Capacidad Cucharón:</span> 0.8 - 1.2 m³</li>
+                        <li><span class="spec-label">Profundidad Excavación:</span> 6,700 mm</li>
+                        <li><span class="spec-label">Alcance Máximo:</span> 9,800 mm</li>
+                        <li><span class="spec-label">Velocidad Giro:</span> 11.5 rpm</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Excavación, carga, demolición ligera, dragado, nivelación y trabajos en canteras y proyectos de infraestructura.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mercedes 1725 Cisterna -->
+        <div class="machine-card">
+            <img src="mercedez 1725 cisterna.jpeg" alt="Mercedes 1725 Cisterna" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Mercedes-Benz 1725</h2>
+                <p class="machine-subtitle">Camión Cisterna</p>
+                <span class="badge">Transporte</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Camión cisterna sobre chassis Mercedes-Benz, diseñado para transporte de agua, hormigón fluido u otros líquidos en obras de construcción. Su sistema de bombeo permite descarga controlada a distancia.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Máximo:</span> 17,000 kg</li>
+                        <li><span class="spec-label">Carga Útil:</span> ~11,000 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 250 HP (186 kW)</li>
+                        <li><span class="spec-label">Capacidad Cisterna:</span> 8,000 - 10,000 L</li>
+                        <li><span class="spec-label">Material Cisterna:</span> acero al carbono</li>
+                        <li><span class="spec-label">Tracción:</span> 4x2 o 4x4</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Transporte y distribución de agua en obra, riego de caminos, alimentación de hormigoneras ycontrol de polvo en canteras.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cat 140H -->
+        <div class="machine-card">
+            <img src="CAT 140H.jpeg" alt="Cat 140H" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Cat 140H</h2>
+                <p class="machine-subtitle">Motoniveladora</p>
+                <span class="badge">Nivelación</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Motoniveladora de alto rendimiento para nivelación, perfilado y acabado de superficies. Su hoja frontal y scarificador permiten trabajar con precisión diferentes tipos de terreno y materiales.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Peso Operativo:</span> ~14,500 kg</li>
+                        <li><span class="spec-label">Potencia:</span> 165 HP (123 kW)</li>
+                        <li><span class="spec-label">Longitud Hoja:</span> 3,658 mm (12 pies)</li>
+                        <li><span class="spec-label">Radio Giro:</span> 7.3 m</li>
+                        <li><span class="spec-label">Velocidad:</span> 40 km/h</li>
+                        <li><span class="spec-label">Profundidad Escarificado:</span> 200 mm</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Nivelación de terrenos, perfilado de carreteras, mantenimiento vial, extendido de materiales,y preparación de plataformas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grupo de Máquinas 1 -->
+        <div class="machine-card">
+            <img src="grupo maquinas.jpeg" alt="Grupo de Máquinas" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Flota Principal</h2>
+                <p class="machine-subtitle">Grupo de Maquinaria Pesada</p>
+                <span class="badge">Varios</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Flota completa de maquinaria pesada que incluye excavadoras, compactadores, cargadoras y camiones. Equipos en óptimo estado de funcionamiento para proyectos de construcción de medium a gran escala.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Equipos en Flota</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Excavadoras:</span> Doosan, Hyundai, Solgg</li>
+                        <li><span class="spec-label">Compactadores:</span> Dynapac (pata cabra y liso), Cat CW34</li>
+                        <li><span class="spec-label">Cargadoras:</span> LiuGong 855H</li>
+                        <li><span class="spec-label">Retroexcavadora:</span> Cat 416E</li>
+                        <li><span class="spec-label">Volquetes:</span> F 14000</li>
+                        <li><span class="spec-label"> Cisterna:</span> Mercedes-Benz 1725</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Movimiento de tierras, compactación, excavación, carga, transporte interno,y acabados de superficies en proyectos de construcción vial,edificaciones e infraestructura.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mercedes-Benz Axor 3131 Mixer -->
+        <div class="machine-card">
+            <img src="Mercedes-Benz Axor 3131- mixer .png" alt="Camión Mixer Mercedes-Benz" class="machine-image">
+            <div class="machine-content">
+                <h2 class="machine-title">Mercedes-Benz Axor 3131</h2>
+                <p class="machine-subtitle">Camión Mixer 6 m³ / 7 m³</p>
+                <span class="badge">Transporte</span>
+
+                <div class="section">
+                    <h3 class="section-title">Descripción General</h3>
+                    <p class="description">Camión mixer sobre chassis Mercedes-Benz Axor, diseñado para transporte y entrega de hormigón fresco en obra. Su tambor mezclador mantiene el hormigón en condiciones óptimas durante el transporte, con capacidad de 6 a 7 metros cúbicos.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Características Principales</h3>
+                    <ul class="spec-list">
+                        <li><span class="spec-label">Capacidad:</span> 6 - 7 m³</li>
+                        <li><span class="spec-label">Chasis:</span> Mercedes-Benz Axor</li>
+                        <li><span class="spec-label">Potencia:</span> 310 HP (228 kW)</li>
+                        <li><span class="spec-label">Configuración:</span> 6x4</li>
+                        <li><span class="spec-label">Tambor:</span> mezclador planetario</li>
+                        <li><span class="spec-label">Velocidad Descarga:</span> 1 m³/min</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Aplicaciones</h3>
+                    <p class="description">Transporte de hormigón fresco para columnas, muros, losas, cimentaciones, pilotes y todo tipo de estructuras de hormigón en obras de construcción vial y edilicia.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
